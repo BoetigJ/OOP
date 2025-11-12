@@ -10,12 +10,15 @@ class Queue:
         self.element.append(x)
 
     def dequeue(self):
+        x = valueTxt.get(1.0, "end-1c")
         self.element.pop(0)
 
     def displayqueue(self):
-        print("Elemenets in Queue: ")
+        valueTxt.insert(tk.INSERT, "Elements in Queue")
         for i in self.element:
-            print(i)
+            valueTxt.insert(tk.INSERT, i)
+    def clearQueue(self):
+        valueTxt.delete(1.0, END)
 
 top = Tk()
 top.geometry("600x600")
@@ -23,20 +26,23 @@ top.geometry("600x600")
 
 valueTxt = Text(width=55, height=2)
 valueTxt.place(x=100, y=100)
-
+queue = Queue()
 def show(x):
     try:
         if x == "create_queue":
-            q = Queue()
+            y = 1
 
         elif x == "display":
-           q.displayqueue()
+            queue.displayqueue()
 
         elif x == "enqueue":
-            q.enqueue()
+            queue.enqueue()
 
         elif x == "dequeue":
-            q.dequeue()
+            queue.dequeue()
+
+        elif x == "clearQueue":
+            queue.clearQueue()
 
     except:
         valueTxt.delete(1.0, END)
@@ -56,7 +62,7 @@ dequeue.place(x=300, y=150)
 create_queue = Button(top, text="create queue", width=10, height=5, command=lambda: show("create_queue"))
 create_queue.place(x=100, y=250)
 
-B5 = Button(top, text="5", width=10, height=5, command=lambda: show("5"))
+B5 = Button(top, text="clear queue", width=10, height=5, command=lambda: show("clearQueue"))
 B5.place(x=200, y=250)
 
 
